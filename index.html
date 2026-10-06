@@ -9,46 +9,34 @@
 header{padding:20px;text-align:center;background:linear-gradient(135deg,#facc15,#f59e0b);color:#111827}header h1{margin:0;font-size:32px}
 .container{max-width:1400px;margin:auto;padding:20px}.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}
 .card{background:#111827;border:1px solid #334155;border-radius:20px;padding:20px;box-shadow:0 10px 35px #0008}
-.points{display:flex;justify-content:space-between;align-items:center;background:#020617;border:1px solid #334155;padding:15px;border-radius:12px}.points strong{color:#facc15;font-size:28px}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}.controlBox{background:#020617;padding:15px;border-radius:15px;border:1px solid #334155}.controlBox h3{color:#facc15;margin-top:0}
-.buttons{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.multButtons{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
 button{padding:12px;background:#1e293b;color:white;border:2px solid #334155;border-radius:10px;cursor:pointer;font-weight:bold}button:hover{border-color:#facc15}button.selected{background:#713f12;border-color:#facc15}button:disabled{opacity:.4}
-.race{position:relative;height:520px;overflow:hidden;border-radius:18px;background:radial-gradient(circle at 50% 0%,#1e3a8a,#0f172a 70%);border:2px solid #334155;margin-top:20px}
-.track{position:absolute;left:5%;right:5%;top:75px;bottom:45px}.lane{position:absolute;left:0;right:0;height:100px;border-bottom:2px dashed #64748b}.lane1{top:20px}.lane2{top:170px}.lane3{top:320px}
+.race{position:relative;height:380px;overflow:hidden;border-radius:18px;background:radial-gradient(circle at 50% 0%,#1e3a8a,#0f172a 70%);border:2px solid #334155;margin-top:15px}
+.track{position:absolute;left:5%;right:5%;top:75px;bottom:45px}.lane{position:absolute;left:0;right:0;height:100px;border-bottom:2px dashed #64748b}.lane1{top:20px}.lane2{top:170px}
 .finish{position:absolute;right:5%;top:60px;bottom:45px;width:12px;background:repeating-linear-gradient(0deg,white 0 12px,#111 12px 24px)}
 .ball{position:absolute;left:0;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;transition:left .12s linear}
-.ball1{top:42px;background:#22c55e;box-shadow:0 0 15px #22c55e,0 0 40px #22c55e88}.ball2{top:192px;background:#ef4444;box-shadow:0 0 15px #ef4444,0 0 40px #ef444488}.ball3{top:342px;background:#a855f7;box-shadow:0 0 15px #a855f7,0 0 40px #a855f788}
+.ball1{top:42px;background:#22c55e;box-shadow:0 0 15px #22c55e,0 0 40px #22c55e88}.ball2{top:192px;background:#ef4444;box-shadow:0 0 15px #ef4444,0 0 40px #ef444488}
 .names{position:absolute;top:18px;left:5%;right:5%;display:flex;justify-content:space-between;font-weight:bold;z-index:5}.you{color:#4ade80}.system{color:#f87171}
-.status{margin-top:15px;padding:15px;background:#020617;border-radius:12px;text-align:center;min-height:48px}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}
+.status{margin-top:15px;padding:15px;background:#020617;border-radius:12px;text-align:center;min-height:48px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
 .algorithm{background:#020617;border:2px solid #22c55e}.algorithm h2{color:#4ade80}.monitor{padding:15px;background:#052e16;border-radius:12px;color:#86efac}
 .code{height:350px;overflow:auto;padding:16px;background:#000;color:#86efac;border-radius:12px;font-family:"Courier New",monospace;font-size:13px;line-height:1.6;white-space:pre-wrap}
 .explanation{margin-top:15px;padding:15px;background:#0f172a;border-left:4px solid #facc15;border-radius:10px;line-height:1.6}
-.data{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:15px}.dataBox{padding:10px;background:#0f172a;border-radius:10px;text-align:center}.dataBox span{display:block;color:#94a3b8;font-size:10px}.dataBox strong{display:block;margin-top:5px;color:#4ade80;font-size:18px}
+.data{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}.dataBox{padding:10px;background:#0f172a;border-radius:10px;text-align:center}.dataBox span{display:block;color:#94a3b8;font-size:11px}.dataBox strong{display:block;margin-top:5px;color:#4ade80;font-size:20px}
 .warning{margin-top:15px;padding:15px;background:#451a03;border-left:5px solid #f97316;border-radius:10px;line-height:1.5}.reset{width:100%;margin-top:12px;background:#ef4444;border:0}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.buttons{grid-template-columns:repeat(3,1fr)}.choices{grid-template-columns:1fr}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.choices{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header><h1>🏁 APOSTA PERDIDA</h1><p>Protótipo Digital Educativo</p></header>
 <div class="container"><div class="layout">
 <div class="card">
-<div class="points"><span>🪙 Pontos fictícios</span><strong id="points">2000</strong></div>
-<div class="controls">
-<div class="controlBox"><h3>💰 Valor de exposição</h3><div class="buttons">
-<button onclick="selectValue(5,this)">5</button><button onclick="selectValue(10,this)">10</button><button onclick="selectValue(25,this)">25</button><button onclick="selectValue(50,this)">50</button><button onclick="selectValue(100,this)">100</button>
+<h2 style="margin-top:0">🏁 Escolha uma bolinha para começar</h2>
+<div class="race"><div class="names"><span class="you">🟢 BOLINHA 1</span><span class="system">🔴 BOLINHA 2</span></div><div class="finish"></div><div class="track">
+<div class="lane lane1"></div><div class="lane lane2"></div>
+<div id="ball1" class="ball ball1">1</div><div id="ball2" class="ball ball2">2</div>
 </div></div>
-<div class="controlBox"><h3>📈 Multiplicador</h3><div class="multButtons">
-<button onclick="selectMultiplier(2,this)">2x</button><button onclick="selectMultiplier(3,this)">3x</button><button onclick="selectMultiplier(4,this)">4x</button>
-</div></div></div>
-<div class="status" id="selection">Escolha um valor e um multiplicador.</div>
-<h2>🏁 Escolha uma bolinha</h2>
-<div class="race"><div class="names"><span class="you">🟢 SUA ESCOLHA</span><span class="system">🤖 SISTEMA</span></div><div class="finish"></div><div class="track">
-<div class="lane lane1"></div><div class="lane lane2"></div><div class="lane lane3"></div>
-<div id="ball1" class="ball ball1">1</div><div id="ball2" class="ball ball2">2</div><div id="ball3" class="ball ball3">3</div>
-</div></div>
-<div class="status" id="status">Escolha os parâmetros para começar.</div>
-<div class="choices"><button id="c1" onclick="chooseBall(1)">🟢 Bolinha 1</button><button id="c2" onclick="chooseBall(2)">🔴 Bolinha 2</button><button id="c3" onclick="chooseBall(3)">🟣 Bolinha 3</button></div>
-<div class="data"><div class="dataBox"><span>RODADAS</span><strong id="round">0</strong></div><div class="dataBox"><span>VALOR</span><strong id="valueData">0</strong></div><div class="dataBox"><span>MULTIPLICADOR</span><strong id="multData">0x</strong></div><div class="dataBox"><span>PADRÕES</span><strong id="patternData">0</strong></div></div>
+<div class="status" id="status">Clique em uma das bolinhas abaixo para iniciar a simulação.</div>
+<div class="choices"><button id="c1" onclick="chooseBall(1)">🟢 Bolinha 1 (Verde)</button><button id="c2" onclick="chooseBall(2)">🔴 Bolinha 2 (Vermelha)</button></div>
+<div class="data"><div class="dataBox"><span>RODADAS</span><strong id="round">0</strong></div><div class="dataBox"><span>PADRÕES DETECTADOS</span><strong id="patternData">0</strong></div></div>
 <button class="reset" onclick="resetGame()">🔄 Nova simulação</button>
 </div>
 <div class="card algorithm">
@@ -74,47 +62,46 @@ ADAPTAR
 CONTINUAR OBSERVANDO</pre>
 <h3>🔎 O que o algoritmo está fazendo?</h3>
 <div id="explanation" class="explanation">O sistema está aguardando uma nova simulação.<br><br>Durante a corrida, o painel mostrará as etapas de observação, análise, identificação de padrões e adaptação.</div>
-<div class="warning">⚠️ <strong>OBJETIVO EDUCATIVO</strong><br><br>Os 2.000 pontos são fictícios. Os valores e multiplicadores representam níveis de exposição dentro da simulação.<br><br>O objetivo é mostrar como mecanismos de probabilidade, padrões, decisões e sensação de controle podem influenciar o usuário.</div>
+<div class="warning">⚠️ <strong>OBJETIVO EDUCATIVO</strong><br><br>Esta simulação demonstra como mecanismos de probabilidade, tomada de decisão e falsa sensação de controle podem ser manipulados algoritmicamente nos bastidores.</div>
 </div></div></div>
 <script>
-let points=2000,selectedValue=0,multiplier=0,selectedBall=0,running=false,positions=[0,0,0],history=[],timer;
-const balls=[document.getElementById("ball1"),document.getElementById("ball2"),document.getElementById("ball3")];
-function selectValue(v,b){if(running)return;selectedValue=v;document.querySelectorAll(".buttons button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");updateSelection()}
-function selectMultiplier(v,b){if(running)return;multiplier=v;document.querySelectorAll(".multButtons button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");updateSelection()}
-function updateSelection(){document.getElementById("selection").innerHTML=selectedValue&&multiplier?`🪙 Valor: <strong>${selectedValue}</strong> pontos | 📈 Exposição: <strong>${multiplier}x</strong>`:"Escolha um valor e um multiplicador."}
+let selectedBall=0,running=false,positions=[0,0],history=[],timer;
+const balls=[document.getElementById("ball1"),document.getElementById("ball2")];
+
 function chooseBall(n){
  if(running)return;
- if(!selectedValue){document.getElementById("status").innerText="⚠️ Escolha primeiro um valor.";return}
- if(!multiplier){document.getElementById("status").innerText="⚠️ Escolha primeiro 2x, 3x ou 4x.";return}
- selectedBall=n;document.querySelectorAll(".choices button").forEach(b=>b.classList.remove("selected"));document.getElementById("c"+n).classList.add("selected");
- document.getElementById("status").innerHTML=`🎯 Bolinha escolhida: <strong>${n}</strong> | Exposição: <strong>${multiplier}x</strong>`;
+ selectedBall=n;
+ document.querySelectorAll(".choices button").forEach(b=>b.classList.remove("selected"));
+ document.getElementById("c"+n).classList.add("selected");
+ document.getElementById("status").innerHTML=`🎯 Bolinha escolhida: <strong>${n} (${n===1?'Verde':'Vermelha'})</strong>`;
  document.getElementById("monitor").innerText="● ETAPA 1 — OBSERVAÇÃO";
  document.getElementById("code").innerText=`// INÍCIO DA SIMULAÇÃO
 
-valor = ${selectedValue};
-multiplicador = ${multiplier}x;
-escolha = bolinha ${n};
+escolha = bolinha ${n} (${n===1?'Verde':'Vermelha'});
 
 estado = "observando";
 
 registrar_escolha();
-registrar_exposicao();
 acompanhar_movimentos();
 coletar_historico();`;
- document.getElementById("explanation").innerHTML="<strong>🔎 O algoritmo começou a observar.</strong><br><br>Ele registrou qual bolinha foi escolhida, o nível de exposição e os primeiros movimentos da corrida.<br><br>Essas informações formam o histórico que será utilizado nas próximas etapas.";
+ document.getElementById("explanation").innerHTML="<strong>🔎 O algoritmo começou a observar.</strong><br><br>Ele registrou qual bolinha foi escolhida e os primeiros movimentos da corrida.<br><br>Essas informações formam o histórico que será utilizado nas próximas etapas.";
  setTimeout(startRace,800);
 }
+
 function startRace(){
- running=true;positions=[0,0,0];history=[];
- document.querySelectorAll(".choices button,.buttons button,.multButtons button").forEach(b=>b.disabled=true);
+ running=true;positions=[0,0];history=[];
+ document.querySelectorAll(".choices button").forEach(b=>b.disabled=true);
  timer=setInterval(updateRace,120);
 }
+
 function updateRace(){
- for(let i=0;i<3;i++){positions[i]+=0.25+Math.random()*0.55;positions[i]=Math.min(92,positions[i])}
+ for(let i=0;i<2;i++){positions[i]+=0.25+Math.random()*0.55;positions[i]=Math.min(92,positions[i])}
  history.push([...positions]);updateVisual();updateAlgorithm();
- if(positions[0]>=92||positions[1]>=92||positions[2]>=92)finishRace();
+ if(positions[0]>=92||positions[1]>=92)finishRace();
 }
-function updateVisual(){for(let i=0;i<3;i++)balls[i].style.left=positions[i]+"%"}
+
+function updateVisual(){for(let i=0;i<2;i++)balls[i].style.left=positions[i]+"%"}
+
 function updateAlgorithm(){
  let r=history.length,p=0;
  if(r<5){
@@ -122,14 +109,12 @@ function updateAlgorithm(){
   document.getElementById("code").innerText=`// ETAPA 1 — OBSERVAÇÃO
 
 rodada = ${r};
-escolha = bolinha ${selectedBall};
-valor = ${selectedValue};
-multiplicador = ${multiplier}x;
+escolha = bolinha ${selectedBall} (${selectedBall===1?'Verde':'Vermelha'});
 
 registrar_movimento();
 armazenar_historico();
 comparar_posicoes();`;
-  document.getElementById("explanation").innerHTML="<strong>🔎 O algoritmo está observando.</strong><br><br>Ele acompanha a posição das três bolinhas e registra cada mudança de posição.<br><br>Neste momento, o objetivo é construir um histórico da corrida.";
+  document.getElementById("explanation").innerHTML="<strong>🔎 O algoritmo está observando.</strong><br><br>Ele acompanha a posição das duas bolinhas e registra cada mudança de posição.<br><br>Neste momento, o objetivo é construir um histórico da corrida.";
  }else if(r<12){
   p=1;document.getElementById("monitor").innerText="● ETAPA 2 — ANÁLISE";
   document.getElementById("code").innerText=`// ETAPA 2 — ANÁLISE
@@ -140,7 +125,7 @@ comparar_dados();
 analisar_movimentos();
 procurar_repeticoes();
 identificar_tendencias();`;
-  document.getElementById("explanation").innerHTML="<strong>🧠 O algoritmo está analisando.</strong><br><br>Ele compara os movimentos registrados nas rodadas anteriores e procura repetições ou tendências.<br><br>Isso demonstra como dados acumulados podem ser utilizados para criar uma previsão.";
+  document.getElementById("explanation").innerHTML="<strong>🧠 O algoritmo está analisando.</strong><br><br>Ele compara os movimentos registrados nas rodadas anteriores e procura repetições ou tendências.<br><br>Isso demonstra como dados acumulados podem ser utilizados para criar previsões.";
  }else if(r<20){
   p=2;document.getElementById("monitor").innerText="● ETAPA 3 — IDENTIFICAÇÃO";
   document.getElementById("code").innerText=`// ETAPA 3 — IDENTIFICAÇÃO
@@ -163,37 +148,41 @@ padroes = ${p};
 analisar_historico();
 identificar_tendencias();
 adaptar_comportamento();
-continuar_monitorando();
-registrar_nova_informacao();`;
-  document.getElementById("explanation").innerHTML="<strong>⚙️ O algoritmo está se adaptando.</strong><br><br>Ele utiliza o histórico acumulado para ajustar a forma como a simulação se comporta.<br><br>Depois da adaptação, ele volta a observar os acontecimentos e o ciclo continua.";
+continuar_monitorando();`;
+  document.getElementById("explanation").innerHTML="<strong>⚙️ O algoritmo está se adaptando.</strong><br><br>Ele utiliza o histórico acumulado para ajustar a forma como a simulação se comporta.<br><br>Depois da adaptação, ele ajusta os resultados e continua o monitoramento.";
  }
- document.getElementById("round").innerText=r;document.getElementById("valueData").innerText=selectedValue;document.getElementById("multData").innerText=multiplier+"x";document.getElementById("patternData").innerText=p;
+ document.getElementById("round").innerText=r;document.getElementById("patternData").innerText=p;
 }
+
 function finishRace(){
  clearInterval(timer);running=false;
- let winner=Math.floor(Math.random()*3)+1;positions[winner-1]=94;updateVisual();
- let consequence=selectedValue*multiplier;
- if(winner===selectedBall){points+=consequence;document.getElementById("status").innerHTML=`🏆 <strong>Resultado favorável!</strong><br>Consequência da simulação: +${consequence} pontos fictícios.`}
- else{points=Math.max(0,points-consequence);document.getElementById("status").innerHTML=`⚠️ <strong>Resultado desfavorável.</strong><br>Consequência da simulação: -${consequence} pontos fictícios.`}
- document.getElementById("points").innerText=points;
- document.querySelectorAll(".choices button,.buttons button,.multButtons button").forEach(b=>b.disabled=false);
+ let winner = (selectedBall === 1) ? 2 : 1;
+ positions[winner-1]=94;
+ positions[selectedBall-1]=Math.min(positions[selectedBall-1], 88);
+ updateVisual();
+ document.getElementById("status").innerHTML=`⚠️ <strong>Resultado final:</strong><br>Bolinha ${winner} (${winner===1?'Verde':'Vermelha'}) venceu a corrida!`;
+ document.querySelectorAll(".choices button").forEach(b=>b.disabled=false);
  document.getElementById("monitor").innerText="● ANÁLISE FINALIZADA";
- document.getElementById("code").innerText=`// ANÁLISE FINAL
+ document.getElementById("code").innerText=`// ANÁLISE FINAL — MANIPULAÇÃO DO ALGORITMO
 
-ler_historico();
-comparar_movimentos();
-identificar_padroes();
-avaliar_tendencias();
-adaptar_comportamento();
-registrar_resultado();
-encerrar_simulacao();`;
- document.getElementById("explanation").innerHTML="<strong>🧠 O que o algoritmo fez?</strong><br><br>1️⃣ Observou os movimentos das bolinhas.<br><br>2️⃣ Registrou cada acontecimento no histórico.<br><br>3️⃣ Comparou informações de diferentes momentos.<br><br>4️⃣ Procurou padrões e tendências.<br><br>5️⃣ Adaptou o comportamento da simulação.<br><br>6️⃣ Continuou monitorando os acontecimentos.<br><br><strong>⚠️ Reflexão:</strong><br><br>O usuário consegue enxergar apenas o resultado, enquanto o sistema pode trabalhar com várias informações ao mesmo tempo. Essa diferença pode criar uma falsa sensação de controle.";
+escolha_usuario = ${selectedBall} (${selectedBall===1?'Verde':'Vermelha'});
+
+if (escolha_usuario == 1) {
+    vencedor_forcado = 2; // Jogador escolheu Verde -> Ganha Vermelho
+} else if (escolha_usuario == 2) {
+    vencedor_forcado = 1; // Jogador escolheu Vermelho -> Ganha Verde
 }
+
+aplicar_resultado();
+encerrar_simulacao();`;
+ document.getElementById("explanation").innerHTML="<strong>🧠 O que o algoritmo fez?</strong><br><br>O sistema identificou a sua escolha e forçou o resultado oposto para garantir a derrota da bolinha escolhida:<br><br>🔴 Se você escolheu a <strong>Bolinha Verde</strong>, o algoritmo fez a <strong>Bolinha Vermelha</strong> ganhar.<br>🟢 Se você escolheu a <strong>Bolinha Vermelha</strong>, o algoritmo fez a <strong>Bolinha Verde</strong> ganhar.<br><br><strong>⚠️ Reflexão:</strong><br><br>A simulação demonstra como sistemas manipulados funcionam nos bastidores. O usuário acredita estar jogando um jogo justo de sorte ou padrão, mas o algoritmo decide quem ganha com base na escolha que ele acabou de fazer.";
+}
+
 function resetGame(){
- clearInterval(timer);running=false;selectedValue=0;multiplier=0;selectedBall=0;positions=[0,0,0];history=[];balls.forEach(b=>b.style.left="0%");
+ clearInterval(timer);running=false;selectedBall=0;positions=[0,0];history=[];balls.forEach(b=>b.style.left="0%");
  document.querySelectorAll("button").forEach(b=>{b.disabled=false;b.classList.remove("selected")});
- document.getElementById("points").innerText="2000";document.getElementById("round").innerText="0";document.getElementById("valueData").innerText="0";document.getElementById("multData").innerText="0x";document.getElementById("patternData").innerText="0";
- document.getElementById("selection").innerText="Escolha um valor e um multiplicador.";document.getElementById("status").innerText="Escolha os parâmetros para começar.";document.getElementById("monitor").innerText="● AGUARDANDO DADOS";
+ document.getElementById("round").innerText="0";document.getElementById("patternData").innerText="0";
+ document.getElementById("status").innerText="Clique em uma das bolinhas abaixo para iniciar a simulação.";document.getElementById("monitor").innerText="● AGUARDANDO DADOS";
  document.getElementById("code").innerText=`// SISTEMA INICIALIZADO
 
 estado = "aguardando";
