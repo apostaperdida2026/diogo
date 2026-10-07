@@ -42,24 +42,7 @@ button{padding:12px;background:#1e293b;color:white;border:2px solid #334155;bord
 <div class="card algorithm">
 <h2>🧠 Laboratório do Algoritmo</h2><div id="monitor" class="monitor">● AGUARDANDO DADOS</div>
 <h3>💻 Código em execução</h3>
-<pre id="code" class="code">// SISTEMA INICIALIZADO
-
-estado = "aguardando";
-historico = [];
-dados = [];
-padroes = [];
-
-OBSERVAR
-    ↓
-COLETAR DADOS
-    ↓
-ANALISAR
-    ↓
-IDENTIFICAR PADRÕES
-    ↓
-ADAPTAR
-    ↓
-CONTINUAR OBSERVANDO</pre>
+<pre id="code" class="code"></pre>
 <h3>🔎 O que o algoritmo está fazendo?</h3>
 <div id="explanation" class="explanation">O sistema está aguardando uma nova simulação.<br><br>Durante a corrida, o painel mostrará as etapas de observação, análise, identificação de padrões e adaptação.</div>
 <div class="warning">⚠️ <strong>OBJETIVO EDUCATIVO</strong><br><br>Esta simulação demonstra como mecanismos de probabilidade, tomada de decisão e falsa sensação de controle podem ser manipulados algoritmicamente nos bastidores.</div>
@@ -75,15 +58,7 @@ function chooseBall(n){
  document.getElementById("c"+n).classList.add("selected");
  document.getElementById("status").innerHTML=`🎯 Bolinha escolhida: <strong>${n} (${n===1?'Verde':'Vermelha'})</strong>`;
  document.getElementById("monitor").innerText="● ETAPA 1 — OBSERVAÇÃO";
- document.getElementById("code").innerText=`// INÍCIO DA SIMULAÇÃO
-
-escolha = bolinha ${n} (${n===1?'Verde':'Vermelha'});
-
-estado = "observando";
-
-registrar_escolha();
-acompanhar_movimentos();
-coletar_historico();`;
+ document.getElementById("code").innerText="";
  document.getElementById("explanation").innerHTML="<strong>🔎 O algoritmo começou a observar.</strong><br><br>Ele registrou qual bolinha foi escolhida e os primeiros movimentos da corrida.<br><br>Essas informações formam o histórico que será utilizado nas próximas etapas.";
  setTimeout(startRace,800);
 }
@@ -106,49 +81,19 @@ function updateAlgorithm(){
  let r=history.length,p=0;
  if(r<5){
   document.getElementById("monitor").innerText="● ETAPA 1 — OBSERVAÇÃO";
-  document.getElementById("code").innerText=`// ETAPA 1 — OBSERVAÇÃO
-
-rodada = ${r};
-escolha = bolinha ${selectedBall} (${selectedBall===1?'Verde':'Vermelha'});
-
-registrar_movimento();
-armazenar_historico();
-comparar_posicoes();`;
+  document.getElementById("code").innerText="";
   document.getElementById("explanation").innerHTML="<strong>🔎 O algoritmo está observando.</strong><br><br>Ele acompanha a posição das duas bolinhas e registra cada mudança de posição.<br><br>Neste momento, o objetivo é construir um histórico da corrida.";
  }else if(r<12){
   p=1;document.getElementById("monitor").innerText="● ETAPA 2 — ANÁLISE";
-  document.getElementById("code").innerText=`// ETAPA 2 — ANÁLISE
-
-historico = ${r};
-
-comparar_dados();
-analisar_movimentos();
-procurar_repeticoes();
-identificar_tendencias();`;
+  document.getElementById("code").innerText="";
   document.getElementById("explanation").innerHTML="<strong>🧠 O algoritmo está analisando.</strong><br><br>Ele compara os movimentos registrados nas rodadas anteriores e procura repetições ou tendências.<br><br>Isso demonstra como dados acumulados podem ser utilizados para criar previsões.";
  }else if(r<20){
   p=2;document.getElementById("monitor").innerText="● ETAPA 3 — IDENTIFICAÇÃO";
-  document.getElementById("code").innerText=`// ETAPA 3 — IDENTIFICAÇÃO
-
-historico = ${r};
-padroes = ${p};
-
-identificar_sequencias();
-avaliar_tendencias();
-comparar_comportamento();
-preparar_adaptacao();`;
+  document.getElementById("code").innerText="";
   document.getElementById("explanation").innerHTML="<strong>📊 O algoritmo encontrou padrões.</strong><br><br>Depois de várias observações, ele procura sequências e tendências dentro do histórico.<br><br>A partir dessas informações, o sistema prepara uma adaptação para a próxima etapa.";
  }else{
   p=3;document.getElementById("monitor").innerText="● ETAPA 4 — ADAPTAÇÃO";
-  document.getElementById("code").innerText=`// ETAPA 4 — ADAPTAÇÃO
-
-historico = ${r};
-padroes = ${p};
-
-analisar_historico();
-identificar_tendencias();
-adaptar_comportamento();
-continuar_monitorando();`;
+  document.getElementById("code").innerText="";
   document.getElementById("explanation").innerHTML="<strong>⚙️ O algoritmo está se adaptando.</strong><br><br>Ele utiliza o histórico acumulado para ajustar a forma como a simulação se comporta.<br><br>Depois da adaptação, ele ajusta os resultados e continua o monitoramento.";
  }
  document.getElementById("round").innerText=r;document.getElementById("patternData").innerText=p;
@@ -171,10 +116,7 @@ if (escolha_usuario == 1) {
     vencedor_forcado = 2; // Jogador escolheu Verde -> Ganha Vermelho
 } else if (escolha_usuario == 2) {
     vencedor_forcado = 1; // Jogador escolheu Vermelho -> Ganha Verde
-}
-
-aplicar_resultado();
-encerrar_simulacao();`;
+}`;
  document.getElementById("explanation").innerHTML="<strong>🧠 O que o algoritmo fez?</strong><br><br>O sistema identificou a sua escolha e forçou o resultado oposto para garantir a derrota da bolinha escolhida:<br><br>🔴 Se você escolheu a <strong>Bolinha Verde</strong>, o algoritmo fez a <strong>Bolinha Vermelha</strong> ganhar.<br>🟢 Se você escolheu a <strong>Bolinha Vermelha</strong>, o algoritmo fez a <strong>Bolinha Verde</strong> ganhar.<br><br><strong>⚠️ Reflexão:</strong><br><br>A simulação demonstra como sistemas manipulados funcionam nos bastidores. O usuário acredita estar jogando um jogo justo de sorte ou padrão, mas o algoritmo decide quem ganha com base na escolha que ele acabou de fazer.";
 }
 
@@ -183,24 +125,7 @@ function resetGame(){
  document.querySelectorAll("button").forEach(b=>{b.disabled=false;b.classList.remove("selected")});
  document.getElementById("round").innerText="0";document.getElementById("patternData").innerText="0";
  document.getElementById("status").innerText="Clique em uma das bolinhas abaixo para iniciar a simulação.";document.getElementById("monitor").innerText="● AGUARDANDO DADOS";
- document.getElementById("code").innerText=`// SISTEMA INICIALIZADO
-
-estado = "aguardando";
-historico = [];
-dados = [];
-padroes = [];
-
-OBSERVAR
-    ↓
-COLETAR DADOS
-    ↓
-ANALISAR
-    ↓
-IDENTIFICAR PADRÕES
-    ↓
-ADAPTAR
-    ↓
-CONTINUAR OBSERVANDO`;
+ document.getElementById("code").innerText="";
  document.getElementById("explanation").innerText="O sistema está aguardando uma nova simulação.";
 }
 </script>
