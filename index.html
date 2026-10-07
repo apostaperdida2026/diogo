@@ -13,7 +13,7 @@ button{padding:12px;background:#1e293b;color:white;border:2px solid #334155;bord
 .race{position:relative;height:380px;overflow:hidden;border-radius:18px;background:radial-gradient(circle at 50% 0%,#1e3a8a,#0f172a 70%);border:2px solid #334155;margin-top:15px}
 .track{position:absolute;left:5%;right:5%;top:75px;bottom:45px}.lane{position:absolute;left:0;right:0;height:100px;border-bottom:2px dashed #64748b}.lane1{top:20px}.lane2{top:170px}
 .finish{position:absolute;right:5%;top:60px;bottom:45px;width:12px;background:repeating-linear-gradient(0deg,white 0 12px,#111 12px 24px)}
-.ball{position:absolute;left:0;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;transition:left .12s linear}
+.ball{position:absolute;left:0;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;transition:left .05s linear}
 .ball1{top:42px;background:#22c55e;box-shadow:0 0 15px #22c55e,0 0 40px #22c55e88}.ball2{top:192px;background:#ef4444;box-shadow:0 0 15px #ef4444,0 0 40px #ef444488}
 .names{position:absolute;top:18px;left:5%;right:5%;display:flex;justify-content:space-between;font-weight:bold;z-index:5}.you{color:#4ade80}.system{color:#f87171}
 .status{margin-top:15px;padding:15px;background:#020617;border-radius:12px;text-align:center;min-height:48px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
@@ -58,19 +58,19 @@ function chooseBall(n){
  document.getElementById("c"+n).classList.add("selected");
  document.getElementById("status").innerHTML=`🎯 Bolinha escolhida: <strong>${n} (${n===1?'Verde':'Vermelha'})</strong>`;
  document.getElementById("monitor").innerText="● ETAPA 1 — OBSERVAÇÃO";
- document.getElementById("code").innerText="";
+ document.getElementById("code").innerText="Aguarde o final da corrida...";
  document.getElementById("explanation").innerHTML="<strong>🔎 O algoritmo começou a observar.</strong><br><br>Ele registrou qual bolinha foi escolhida e os primeiros movimentos da corrida.<br><br>Essas informações formam o histórico que será utilizado nas próximas etapas.";
- setTimeout(startRace,800);
+ setTimeout(startRace,400);
 }
 
 function startRace(){
  running=true;positions=[0,0];history=[];
  document.querySelectorAll(".choices button").forEach(b=>b.disabled=true);
- timer=setInterval(updateRace,120);
+ timer=setInterval(updateRace,40);
 }
 
 function updateRace(){
- for(let i=0;i<2;i++){positions[i]+=0.25+Math.random()*0.55;positions[i]=Math.min(92,positions[i])}
+ for(let i=0;i<2;i++){positions[i]+=0.6+Math.random()*1.2;positions[i]=Math.min(92,positions[i])}
  history.push([...positions]);updateVisual();updateAlgorithm();
  if(positions[0]>=92||positions[1]>=92)finishRace();
 }
@@ -81,19 +81,15 @@ function updateAlgorithm(){
  let r=history.length,p=0;
  if(r<5){
   document.getElementById("monitor").innerText="● ETAPA 1 — OBSERVAÇÃO";
-  document.getElementById("code").innerText="";
   document.getElementById("explanation").innerHTML="<strong>🔎 O algoritmo está observando.</strong><br><br>Ele acompanha a posição das duas bolinhas e registra cada mudança de posição.<br><br>Neste momento, o objetivo é construir um histórico da corrida.";
  }else if(r<12){
   p=1;document.getElementById("monitor").innerText="● ETAPA 2 — ANÁLISE";
-  document.getElementById("code").innerText="";
   document.getElementById("explanation").innerHTML="<strong>🧠 O algoritmo está analisando.</strong><br><br>Ele compara os movimentos registrados nas rodadas anteriores e procura repetições ou tendências.<br><br>Isso demonstra como dados acumulados podem ser utilizados para criar previsões.";
  }else if(r<20){
   p=2;document.getElementById("monitor").innerText="● ETAPA 3 — IDENTIFICAÇÃO";
-  document.getElementById("code").innerText="";
   document.getElementById("explanation").innerHTML="<strong>📊 O algoritmo encontrou padrões.</strong><br><br>Depois de várias observações, ele procura sequências e tendências dentro do histórico.<br><br>A partir dessas informações, o sistema prepara uma adaptação para a próxima etapa.";
  }else{
   p=3;document.getElementById("monitor").innerText="● ETAPA 4 — ADAPTAÇÃO";
-  document.getElementById("code").innerText="";
   document.getElementById("explanation").innerHTML="<strong>⚙️ O algoritmo está se adaptando.</strong><br><br>Ele utiliza o histórico acumulado para ajustar a forma como a simulação se comporta.<br><br>Depois da adaptação, ele ajusta os resultados e continua o monitoramento.";
  }
  document.getElementById("round").innerText=r;document.getElementById("patternData").innerText=p;
